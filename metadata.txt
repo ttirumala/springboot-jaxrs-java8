@@ -1,0 +1,19 @@
+[ {
+  "customerName" : "Tirumala",
+  "currency" : "USD",
+  "amount" : 2000,
+  "id" : 1,
+  "uri" : "/v1/accounts/account/1"
+}, {
+  "customerName" : "Jason",
+  "currency" : "USD",
+  "amount" : 4000,
+  "id" : 2,
+  "uri" : "/v1/accounts/account/2"
+}, {
+  "customerName" : "Kriss Wilson",
+  "currency" : "INR",
+  "amount" : 500,
+  "id" : 3,
+  "uri" : "/v1/accounts/account/3"
+} ]
