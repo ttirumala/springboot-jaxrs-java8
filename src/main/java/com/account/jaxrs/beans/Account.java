@@ -36,6 +36,14 @@ public class Account implements Serializable {
     public Account() {
     }
 
+    public Account(String customerName, String currency, BigDecimal amount, int id, String uri) {
+        this.customerName = customerName;
+        this.currency = currency;
+        this.amount = amount;
+        this.id = id;
+        this.uri = uri;
+    }
+
     public int getId() {
         return id;
     }

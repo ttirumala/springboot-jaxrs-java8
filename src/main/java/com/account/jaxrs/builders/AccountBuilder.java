@@ -1,23 +1,30 @@
 package com.account.jaxrs.builders;
 
 import com.account.jaxrs.beans.Account;
+import org.springframework.format.annotation.NumberFormat;
 
+import java.math.BigDecimal;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 
 public class AccountBuilder {
 
-    public static Account buildAccount(AccountSetter... accountSetters) {
-        final Account account = new Account();
+    public String customerName;
+    public String currency;
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    public BigDecimal amount;
+    public int id;
+    public String uri;
 
-        Stream.of(accountSetters).forEach(s -> s.accept(account));
-
-        return account;
+    public AccountBuilder with(
+            Consumer<AccountBuilder> builderFunction) {
+        builderFunction.accept(this);
+        return this;
     }
 
-    @FunctionalInterface
-    public interface AccountSetter extends Consumer<Account> {
+
+    public Account createAccount() {
+        return new Account(customerName, currency, amount, id, uri);
     }
 
 }
