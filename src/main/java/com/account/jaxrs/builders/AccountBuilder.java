@@ -15,6 +15,7 @@ public class AccountBuilder {
     public BigDecimal amount;
     public int id;
     public String uri;
+    public String balance;
 
     public AccountBuilder with(
             Consumer<AccountBuilder> builderFunction) {
@@ -25,6 +26,9 @@ public class AccountBuilder {
 
     public Account createAccount() {
         return new Account(customerName, currency, amount, id, uri);
+    }
+    public Account createProtobufAccount() {
+        return new Account(customerName, currency, balance, id, uri);
     }
 
 }

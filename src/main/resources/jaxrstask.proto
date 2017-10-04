@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package jaxrstask;
+
+option java_multiple_files = true;
+option java_package = "com.jaxrstask.protobuf";
+option java_outer_classname = "JaxrsTaskAccountProtos";
+
+message Account {
+	int32 id = 1;
+	string currency = 2;
+	string customer_name = 3;
+	string uri = 4;
+	string balance = 5;
+}
+
+message Accounts {
+	repeated Account account = 1;
+}

@@ -33,6 +33,11 @@ public class Account implements Serializable {
     @JsonProperty("uri")
     private String uri;
 
+    @XmlAttribute(name = "balance")
+    @JsonProperty("balance")
+    private String balance;
+
+
     public Account() {
     }
 
@@ -40,6 +45,14 @@ public class Account implements Serializable {
         this.customerName = customerName;
         this.currency = currency;
         this.amount = amount;
+        this.id = id;
+        this.uri = uri;
+    }
+
+    public Account(String customerName, String currency, String balance, int id, String uri) {
+        this.customerName = customerName;
+        this.currency = currency;
+        this.balance = balance;
         this.id = id;
         this.uri = uri;
     }
@@ -82,5 +95,14 @@ public class Account implements Serializable {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 }

@@ -7,6 +7,7 @@ import com.account.jaxrs.data.AccountJSONFileWrite;
 import com.account.jaxrs.interfaces.ObjectPatch;
 import com.account.jaxrs.interfaces.PATCH;
 import com.account.jaxrs.patch.MediaTypes;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -25,6 +26,7 @@ import java.util.stream.Stream;
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "accounts")
 @Path("/accounts")
+@RestController
 public class AccountController {
 
     @GET
@@ -41,14 +43,27 @@ public class AccountController {
 
     @GET
     @Path("/")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response getAllAccounts() {
+    //@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaTypes.APPLICATION_PROTOBUF})
+  //  public Response getAllAccounts() {
+    public com.jaxrstask.protobuf.Accounts getAllAccounts() {
         System.out.println("DEBUG-getAllAccounts()-Entered");
         AccountJSONFileRead fileRead = new AccountJSONFileRead();
         Accounts accounts = fileRead.readTestData();
+        List<com.jaxrstask.protobuf.Account> protBufAcctList=new ArrayList<>();
+        for(Account a:accounts.getAccounts()){
+            com.jaxrstask.protobuf.Account.Builder acctBuilder=com.jaxrstask.protobuf.Account.newBuilder()
+            .setId(a.getId())
+            .setBalance(a.getBalance())
+            .setCurrency(a.getCurrency())
+            .setCustomerName(a.getCustomerName())
+            .setUri(a.getUri());
+            protBufAcctList.add(acctBuilder.build());
+        }
+        return com.jaxrstask.protobuf.Accounts.newBuilder().addAllAccount(protBufAcctList).build();
         //Stream<Account> accountList= accounts.getAccounts().parallelStream();
-        Response response = Response.status(200).entity(accounts).build();
-        return response;
+       // Response response = Response.status(200).entity(accounts).build();
+       // return response;
     }
 
     @POST

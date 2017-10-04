@@ -28,7 +28,8 @@ public class AccountJSONFileRead {
             File jsonFile = new File(classLoader.getResource(".").getFile() + "/metadata.txt");
             if (!jsonFile.exists()){
                 jsonFile.createNewFile();
-                AccountTestDataBuilder.loadTestAccountData();
+               // AccountTestDataBuilder.loadTestAccountData();
+                AccountTestDataBuilder.loadProtobufTestAccountData();
                 ObjectMapper mapperMetaData = new ObjectMapper();
                 mapperMetaData.writeValue(jsonFile, AccountTestDataBuilder.accountList);
             }

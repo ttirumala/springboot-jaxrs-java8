@@ -44,4 +44,38 @@ public class AccountTestDataBuilder {
         accountList.add(metaAccount);
 
     }
+
+    public static void loadProtobufTestAccountData(){
+
+        Account metaAccount = new AccountBuilder().with(
+                accountBuilder-> {
+                    accountBuilder.customerName = "Tirumala T";
+                    accountBuilder.balance= "1500.00";
+                    accountBuilder.currency="USD";
+                    accountBuilder.id=1;
+                    accountBuilder.uri="/v1/accounts/account/1";
+                }).createProtobufAccount();
+        accountList.add(metaAccount);
+
+        metaAccount = new AccountBuilder().with(
+                accountBuilder-> {
+                    accountBuilder.customerName = "Kriss W";
+                    accountBuilder.balance= "2500.00";
+                    accountBuilder.currency="INR";
+                    accountBuilder.id=2;
+                    accountBuilder.uri="/v1/accounts/account/2";
+                }).createProtobufAccount();
+        accountList.add(metaAccount);
+
+        metaAccount = new AccountBuilder().with(
+                accountBuilder-> {
+                    accountBuilder.customerName = "Jason P";
+                    accountBuilder.balance= "3500.00";
+                    accountBuilder.currency="AED";
+                    accountBuilder.id=3;
+                    accountBuilder.uri="/v1/accounts/account/3";
+                }).createProtobufAccount();
+        accountList.add(metaAccount);
+
+    }
 }
